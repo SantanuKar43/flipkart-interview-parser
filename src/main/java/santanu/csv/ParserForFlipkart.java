@@ -4,19 +4,18 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 import com.opencsv.bean.MappingStrategy;
+import lombok.AllArgsConstructor;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.List;
 
+@AllArgsConstructor
 public class ParserForFlipkart<T> {
     private Class target;
     private String filename;
-    public ParserForFlipkart(Class target, String filename) {
-        this.target = target;
-        this.filename = filename;
-    }
+
     public List<T> parse() throws Exception {
         CsvToBean<T> beans = new CsvToBeanBuilder<T>(getReader(filename))
                 .withMappingStrategy(getMappingStrategy())
